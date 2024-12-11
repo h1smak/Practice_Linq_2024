@@ -40,13 +40,23 @@ namespace Practice_Linq_2024
 
         }
 
+        static void PrintGames(IEnumerable<FootballGame> games)
+        {
+            foreach (var game in games)
+            {
+                Console.WriteLine($"{game.Date:dd.MM.yyyy} {game.Home_team} - {game.Away_team}, Score: {game.Home_score} - {game.Away_score}, Country: {game.Country}");
+            }
+        }
+
 
         // Запит 1
         static void Query1(List<FootballGame> games)
         {
             //Query 1: Вивести всі матчі, які відбулися в Україні у 2012 році.
 
-            var selectedGames = games; // Корегуємо запит !!!
+            var selectedGames = games
+               .Where(e => e.Date.Year == 2012
+                           && e.Country == "Ukraine"); // Корегуємо запит !!!
 
 
             // Перевірка
@@ -54,6 +64,7 @@ namespace Practice_Linq_2024
 
             // див. приклад як має бути виведено:
 
+            PrintGames(selectedGames);
 
         }
 
